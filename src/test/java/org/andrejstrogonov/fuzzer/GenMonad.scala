@@ -1,8 +1,7 @@
-
 package org.andrejstrogonov.fuzzer
-import org.scalacheck.{Gen, Properties}
+import org.scalacheck.{Gen,GenMonad, Properties}
 
-object ScalaCheckGenMonad {
+object GenMonad {
   implicit def scalaCheckGenMonadInstance: GenMonad[Gen] = new GenMonad[Gen] {
     def flatMap[A, B](a: Gen[A])(f: A => Gen[B]): Gen[B] = a.flatMap(f)
 
