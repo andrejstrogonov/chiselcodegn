@@ -1,6 +1,5 @@
-// SPDX-License-Identifier: Apache-2.0
 
-package firrtl.fuzzer
+package org.andrejstrogonov.fuzzer
 
 import org.scalacheck.{Gen, Properties}
 
