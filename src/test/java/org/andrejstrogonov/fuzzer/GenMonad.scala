@@ -1,6 +1,5 @@
 
 package org.andrejstrogonov.fuzzer
-
 import org.scalacheck.{Gen, Properties}
 
 object ScalaCheckGenMonad {
