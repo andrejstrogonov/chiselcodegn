@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
-package firrtl.fuzzer
+package org.andrejstrogonov.fuzzer
 
+import firrtl.*
+import firrtl.fuzzer.ExprGenParams
 import firrtl.fuzzer.ScalaCheckGenMonad.*
 import firrtl.passes.CheckWidths
-import firrtl.*
 import org.scalacheck.{Gen, Prop, Properties}
 
 object FirrtlCompileProperties extends Properties("FirrtlCompile") {

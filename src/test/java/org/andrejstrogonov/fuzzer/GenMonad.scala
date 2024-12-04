@@ -1,20 +1,21 @@
 package org.andrejstrogonov.fuzzer
-import org.scalacheck.{Gen,GenMonad, Properties}
+
+import org.scalacheck.{Gen, GenMonad, Properties}
 
 object GenMonad {
-  implicit def scalaCheckGenMonadInstance: GenMonad[Gen] = new GenMonad[Gen] {
-    def flatMap[A, B](a: Gen[A])(f: A => Gen[B]): Gen[B] = a.flatMap(f)
+  implicit def scalaCheckGenMonadInstance: GenMonad[Gen] = new GenMonad[Gen] with GenMonadTrait {
+    override def flatMap[A, B](a: Gen[A])(f: A => Gen[B]): Gen[B] = a.flatMap(f)
 
-    def map[A, B](a: Gen[A])(f: A => B): Gen[B] = a.map(f)
+    override def map[A, B](a: Gen[A])(f: A => B): Gen[B] = a.map(f)
 
-    def choose(min: Int, max: Int): Gen[Int] = Gen.choose(min, max)
+    override def choose(min: Int, max: Int): Gen[Int] = Gen.choose(min, max)
 
-    def oneOf[A](items: A*): Gen[A] = Gen.oneOf(items)
+    override def oneOf[A](items: A*): Gen[A] = Gen.oneOf(items)
 
-    def const[A](c: A): Gen[A] = Gen.const(c)
+    override def const[A](c: A): Gen[A] = Gen.const(c)
 
-    def widen[A, B >: A](ga: Gen[A]): Gen[B] = ga
+    override def widen[A, B >: A](ga: Gen[A]): Gen[B] = ga
 
-    def generate[A](ga: Gen[A]): A = ga.sample.get
+    override def generate[A](ga: Gen[A]): A = ga.sample.get
   }
 }
